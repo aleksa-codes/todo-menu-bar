@@ -21,9 +21,9 @@ Your tasks stay on your Mac. No account, cloud sync, or tracking.
 
 ## Install
 
-Requires an Apple silicon Mac running macOS 14 or later. DMG and ZIP downloads will be available with the first GitHub release.
+Requires an Apple silicon Mac running macOS 14 or later.
 
-Open the DMG and drag **Todo Menu Bar.app** to Applications. If you use the ZIP, unzip it and move the app to Applications instead.
+Download and open the [latest DMG](https://github.com/aleksa-codes/todo-menu-bar/releases/latest/download/Todo-Menu-Bar-macOS.dmg), then drag **Todo Menu Bar.app** to Applications. Prefer a ZIP? [Download it here](https://github.com/aleksa-codes/todo-menu-bar/releases/latest/download/Todo-Menu-Bar-macOS.zip), unzip it, and move the app to Applications.
 
 The app is not notarized. If macOS blocks the first launch, allow it under System Settings > Privacy & Security.
 
