@@ -18,7 +18,7 @@ struct AboutView: View {
       Text("Tasks stay on this Mac.\nNo account or sync.")
         .foregroundStyle(.secondary)
         .multilineTextAlignment(.center)
-      Link("aleksa.codes", destination: URL(string: "https://aleksa.codes")!)
+      Link("Made by aleksa.codes", destination: URL(string: "https://aleksa.codes")!)
     }
     .padding(28)
     .frame(width: 320)
