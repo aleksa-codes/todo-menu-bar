@@ -1,5 +1,9 @@
 .PHONY: check build run package icon
 
+# Swift 6.4.3 standalone toolchain in ~/Library/Developer/Toolchains.
+TOOLCHAINS ?= org.swift.643202611191a
+export TOOLCHAINS
+
 check:
 	swift build
 	swiftc -typecheck scripts/app-control.swift

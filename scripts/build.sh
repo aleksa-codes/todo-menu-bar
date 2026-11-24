@@ -4,17 +4,23 @@ cd "$(dirname "$0")/.."
 MODE="${1:---build}"
 case "$MODE" in --build|--restart|--package) ;; *) echo "Usage: build.sh [--build|--restart|--package]" >&2; exit 1 ;; esac
 APP="$PWD/dist/Todo Menu Bar.app"
+if [ "$MODE" != "--package" ]; then
+    CONTROL="$PWD/.build/app-control"
+    mkdir -p "$PWD/.build"
+    # The 6.4.3 interpreter cannot JIT-link AppKit; compile the helper instead.
+    swiftc scripts/app-control.swift -o "$CONTROL"
+fi
 if [ "$MODE" = "--package" ]; then
     mkdir -p .build
     STAGING="$(mktemp -d "$PWD/.build/package.XXXXXX")"
     trap 'rm -rf "$STAGING"' EXIT
     APP="$STAGING/Todo Menu Bar.app"
 elif [ "$MODE" = "--build" ]; then
-    swift scripts/app-control.swift check "$APP"
+    "$CONTROL" check "$APP"
 fi
 swift build -c release
 BIN_DIR="$(swift build -c release --show-bin-path)"
-if [ "$MODE" = "--restart" ]; then swift scripts/app-control.swift stop "$APP"; fi
+if [ "$MODE" = "--restart" ]; then "$CONTROL" stop "$APP"; fi
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN_DIR/TodoMenuBar" "$APP/Contents/MacOS/TodoMenuBar"
 cp Info.plist "$APP/Contents/Info.plist"

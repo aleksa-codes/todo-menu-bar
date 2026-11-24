@@ -21,7 +21,7 @@ Your tasks stay on your Mac. No account, cloud sync, or tracking.
 
 ## Install
 
-Requires an Apple silicon Mac running macOS 14 or later.
+Requires an Apple silicon Mac running macOS 15 or later.
 
 Download and open the [latest DMG](https://github.com/aleksa-codes/todo-menu-bar/releases/latest/download/Todo-Menu-Bar-macOS.dmg), then drag **Todo Menu Bar.app** to Applications. Prefer a ZIP? [Download it here](https://github.com/aleksa-codes/todo-menu-bar/releases/latest/download/Todo-Menu-Bar-macOS.zip), unzip it, and move the app to Applications.
 
@@ -29,7 +29,7 @@ The app is not notarized. If macOS blocks the first launch, allow it under Syste
 
 ## Develop
 
-Install Xcode Command Line Tools with Swift 6.2, then run `make run` to build and open the app. Use `make check` to check your changes.
+Install Xcode Command Line Tools and the [Swift 6.4.3 toolchain](https://www.swift.org/install/macos/), then run `make run` to build and open the app. Use `make check` to check your changes. The Makefile selects the installed 6.4.3 toolchain; override `TOOLCHAINS` to use another one.
 
 ## License
 

@@ -1,9 +1,9 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.4
 import PackageDescription
 
 let package = Package(
   name: "TodoMenuBar",
-  platforms: [.macOS(.v14)],
+  platforms: [.macOS(.v15)],
   products: [.executable(name: "TodoMenuBar", targets: ["TodoMenuBar"])],
   targets: [
     .executableTarget(
