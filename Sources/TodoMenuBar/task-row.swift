@@ -24,7 +24,8 @@ extension Priority {
 struct TaskRow: View {
   let task: Todo
   let store: TaskStore
-  @State private var draft: String?
+  @State private var draft = ""
+  @State private var isEditing = false
   @State private var dropTargeted = false
   @FocusState private var editorFocused: Bool
 
@@ -50,12 +51,12 @@ struct TaskRow: View {
       .buttonStyle(.plain)
       .accessibilityLabel(task.isDone ? "Mark \(task.text) incomplete" : "Complete \(task.text)")
 
-      if let draft = Binding($draft) {
-        TextField("Task", text: draft)
+      if isEditing {
+        TextField("Task", text: $draft)
           .textFieldStyle(.plain)
           .focused($editorFocused)
           .onSubmit { commit() }
-          .onExitCommand { self.draft = nil }
+          .onExitCommand { cancel() }
           .onChange(of: editorFocused) { _, focused in
             if !focused { commit() }
           }
@@ -153,13 +154,18 @@ struct TaskRow: View {
 
   private func edit() {
     draft = task.text
+    isEditing = true
     editorFocused = true
   }
 
   private func commit() {
-    guard let draft else { return }
+    guard isEditing else { return }
+    isEditing = false
     let text = draft.trimmingCharacters(in: .whitespacesAndNewlines)
-    self.draft = nil
     if !text.isEmpty { store.update(task.id) { $0.text = text } }
+  }
+
+  private func cancel() {
+    isEditing = false
   }
 }
